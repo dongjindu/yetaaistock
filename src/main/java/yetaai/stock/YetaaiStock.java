@@ -23,11 +23,12 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package yetaai.stock;
 
 import java.awt.EventQueue;
 import java.util.HashMap;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.log4j.Level;
 
 import org.apache.pivot.wtk.DesktopApplicationContext;
@@ -41,20 +42,33 @@ import yetaai.stock.tools.YetaaiApplication;
  * @author Yetaai
  */
 public class YetaaiStock {
+
     public static HashMap<String, String> props = YetaaiApplication.getProps();
+
     public static void main(String[] arguments) {
         try {
+
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        } catch (UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException | ClassNotFoundException ex) {
+            org.apache.log4j.Logger.getLogger(YetaaiStock.class.getName()).log(Level.ERROR, YetaaiStock.class.getName() + ": Exception in Main() set look and feel");
+        }
+        try {
+            /* Turn off metal's use of bold fonts */
+            UIManager.put("swing.boldMetal", Boolean.FALSE);
             EventQueue.invokeLater(new Runnable() {
-               @Override
+                @Override
                 public void run() {
                     start();
                 }
             });
         } catch (Exception e) {
-            org.apache.log4j.Logger.getLogger(YetaaiStock.class.getName()).log(Level.ERROR, YetaaiStock.class.getName() + ": Exception in Main()");
+            org.apache.log4j.Logger.getLogger(YetaaiStock.class.getName()).log(Level.ERROR, YetaaiStock.class.getName() + ": Exception in Main() starting swing thread");
         }
     }
+
     public static void start() {
         
     }
-  }
+}

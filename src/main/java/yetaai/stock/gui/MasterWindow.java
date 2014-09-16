@@ -6,7 +6,9 @@
 package yetaai.stock.gui;
 
 import java.awt.Container;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,7 +19,9 @@ public class MasterWindow extends JFrame{
         
     }
     public void makeUI() {
+        String toolbartype = "Master";
         Container cp = this.getContentPane();
-        addMasterButton();
+        JPanel jpanel = new ToolBarPanel(toolbartype);
+        cp.add((JComponent) jpanel);
     }
 }
