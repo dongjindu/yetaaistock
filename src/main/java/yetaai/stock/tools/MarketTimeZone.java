@@ -79,12 +79,12 @@ public class MarketTimeZone {
                 mtz.market = rs.getString("market");
                 mtz.dbtimezone = TimeZone.getTimeZone(rs.getString("timezone"));
                 int irawoffset = mtz.dbtimezone.getRawOffset();
-                mtz.timezone = Application.getUTCtimezone();
+                mtz.timezone = YetaaiApplication.getUTCtimezone();
                 mtz.timezone.setRawOffset(irawoffset);
-                mtz.dsttimezone = Application.getUTCtimezone();
+                mtz.dsttimezone = YetaaiApplication.getUTCtimezone();
                 mtz.dsttimezone.setRawOffset(irawoffset + mtz.dbtimezone.getDSTSavings());
-                mtz.validfrom.setTime(Application.getUTCtimeformat().parse(rs.getString("validfrom")));
-                mtz.validto.setTime(Application.getUTCtimeformat().parse(rs.getString("validto")));
+                mtz.validfrom.setTime(YetaaiApplication.getUTCtimeformat().parse(rs.getString("validfrom")));
+                mtz.validto.setTime(YetaaiApplication.getUTCtimeformat().parse(rs.getString("validto")));
                 mtz.dststartday = Short.valueOf(rs.getString("dststart").substring(2, 4));
                 mtz.dststartmonth = Short.valueOf(rs.getString("dststart").substring(0,2));
                 mtz.dstendday = Short.valueOf(rs.getString("dstend").substring(2, 4));
@@ -106,7 +106,7 @@ public class MarketTimeZone {
         for (MarketTimeZone mtz:al) {
             if (m.equals(mtz.market)) {
                 if (g.compareTo(mtz.validfrom) >= 0 && g.compareTo(mtz.validto) < 0 ) {
-                    SimpleDateFormat format = Application.getUTCtimeformat();
+                    SimpleDateFormat format = YetaaiApplication.getUTCtimeformat();
                     format.setTimeZone(mtz.dbtimezone);
                     int istart = mtz.dststartmonth * 100 + mtz.dststartday;
                     int iend = mtz.dstendmonth * 100 + mtz.dstendday;

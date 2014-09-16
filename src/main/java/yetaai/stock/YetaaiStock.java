@@ -26,19 +26,35 @@
 
 package yetaai.stock;
 
+import java.awt.EventQueue;
 import java.util.HashMap;
-import yetaai.stock.tools.Application;
+import org.apache.log4j.Level;
+
+import org.apache.pivot.wtk.DesktopApplicationContext;
+import org.openqa.selenium.android.library.Logger;
+
+import yetaai.stock.gui.PivotMain;
+import yetaai.stock.tools.YetaaiApplication;
 
 /**
  *
  * @author Yetaai
  */
 public class YetaaiStock {
-    public static HashMap<String, String> props = Application.getProps();
+    public static HashMap<String, String> props = YetaaiApplication.getProps();
     public static void main(String[] arguments) {
-        start();
+        try {
+            EventQueue.invokeLater(new Runnable() {
+               @Override
+                public void run() {
+                    start();
+                }
+            });
+        } catch (Exception e) {
+            org.apache.log4j.Logger.getLogger(YetaaiStock.class.getName()).log(Level.ERROR, YetaaiStock.class.getName() + ": Exception in Main()");
+        }
     }
     public static void start() {
         
     }
-}
+  }

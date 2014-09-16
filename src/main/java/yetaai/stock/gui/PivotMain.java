@@ -27,7 +27,6 @@ package yetaai.stock.gui;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Display;
@@ -40,7 +39,7 @@ import org.apache.pivot.wtk.Window;
  *
  * @author Yetaai
  */
-public class PivotMain {
+public class PivotMain implements Application{
 
     private Window window = null;
 

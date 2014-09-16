@@ -7,7 +7,7 @@ SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
   WHERE table_schema = 'invest001';
 --    and not(table_name = 'zzdummy'); -- specify DB name here.
 SET @tables = CONCAT('DROP TABLE if exists ', @tables);
---select @tables;
+--  select @tables;
 PREPARE stmt FROM @tables;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
@@ -27,29 +27,29 @@ create table symbol(market varchar(20), symbol varchar(20), address int, comment
                      foreign key (address) references address(address) );
 create table tracknameprod(trackname varchar(20),market varchar(20), symbol varchar(20), primary key(trackname, market, symbol), 
              foreign key (trackname) references trackname(trackname), foreign key(market, symbol) references symbol(market, symbol));
---How many shares today. Can be updated by batch
+-- How many shares today. Can be updated by batch
 create table totalshares(market varchar(20), symbol varchar(20), shares bigint, primary key (market, symbol));
 create table symbolrelation(id int, market varchar(20), symbol varchar(20), ishome smallint, primary key (id), foreign key (market, symbol) references symbol(market, symbol));
-----Historical prices raw, tdate: transaction date
+-- Historical prices raw, tdate: transaction date
 create table h0prices(market varchar(20), symbol varchar(20), tdate date, price0 DOUBLE, price1 double, priceh double, pricel double, quantity bigint, 
                 primary key (market, symbol, tdate));
-----Historical prices adjusted according split, tdate: transaction date
+-- Historical prices adjusted according split, tdate: transaction date
 create table h1prices(market varchar(20), symbol varchar(20), tdate date, price0 DOUBLE, price1 double, priceh double, pricel double, quantity bigint, 
                 primary key (market, symbol, tdate));
-----Historical totoal number of shares, tdate: transaction date
+-- Historical totoal number of shares, tdate: transaction date
 create table h0shares(market varchar(20), symbol varchar(20), tdate date, shares bigint, split double);
 create table h0dividend(market varchar(20), symbol varchar(20), tdate date, shares int,  dividend double);
 create table h0report(market varchar(20), symbol varchar(20), begindate date, enddate date, begincash double, endcash double, cashflow double, beginasset double, endasset double,
                         assetchange double, profit double);
 create table anamethod(anamethod varchar(20), anaclass varchar(20), primary key (anamethod));
 create table anaresult(market varchar(20), symbol varchar(20), anamethod varchar(20), anadate date, resultid smallint, 
---Normally only hchange is used for end price.
+-- Normally only hchange is used for end price.
                hchangep1 double, 
                hchangep2 double,
                hchangep3 double,
                hchangep4 double,
                hchangep5 double,
---Positive than 5 percents
+-- Positive than 5 percents
                hchangep6 double,
                highestp double,
                hchangen1 double, 
@@ -57,7 +57,7 @@ create table anaresult(market varchar(20), symbol varchar(20), anamethod varchar
                hchangen3 double,
                hchangen4 double,
                hchangen5 double,
---Negative than 5 percents
+-- Negative than 5 percents
                hchangen6 double,
                highestn double,
                hchange0 double,
@@ -66,7 +66,7 @@ create table anaresult(market varchar(20), symbol varchar(20), anamethod varchar
                lchangep2 double,
                lchangep3 double,
                lchangep4 double,
---Positive than 5 percents
+-- Positive than 5 percents
                lchangep5 double,
                lchangep6 double,
                lowestp double,
@@ -75,7 +75,7 @@ create table anaresult(market varchar(20), symbol varchar(20), anamethod varchar
                lchangen3 double,
                lchangen4 double,
                lchangen5 double,
---Negative than 5 percents
+-- Negative than 5 percents
                lchangen6 double,
                lowestn double,
                lchange0 double

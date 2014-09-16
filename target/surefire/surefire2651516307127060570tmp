@@ -1,9 +1,0 @@
-#surefire
-#Tue Sep 02 23:12:05 CDT 2014
-maven.ext.class.path=C\:\\Program Files\\NetBeans 8.0\\java\\maven-nblib\\netbeans-eventspy.jar
-user.dir=C\:\\Users\\oefish\\Documents\\NetBeansProjects\\yahoostock
-file.encoding=UTF-8
-localRepository=C\:\\Users\\oefish\\.m2\\repository
-netbeansProjectMappings=
-basedir=C\:\\Users\\oefish\\Documents\\NetBeansProjects\\yahoostock
-test=WebFileDownloader.FileDownloaderTest
