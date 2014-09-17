@@ -25,14 +25,19 @@
  */
 package yetaai.stock;
 
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 import org.apache.log4j.Level;
 
 import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.openqa.selenium.android.library.Logger;
+import yetaai.stock.gui.MasterWindow;
 
 import yetaai.stock.gui.PivotMain;
 import yetaai.stock.tools.YetaaiApplication;
@@ -69,6 +74,18 @@ public class YetaaiStock {
     }
 
     public static void start() {
-        
+        JFrame jf;
+        jf = new MasterWindow();
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jf.setTitle("Yetaai Stock");
+//        frame.setBounds(10, 10, 630, 470); //Generally used for JComponents position and size when no layout is used.we can set layout manager to null.
+        ((MasterWindow) jf).makeUI();
+        jf.setSize(640, 620);
+        //frame.setResizable(false);
+        jf.setLocationRelativeTo(null);
+        jf.pack();
+        jf.setVisible(true);
+        jf.toFront();
+
     }
 }
